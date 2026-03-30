@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Illustratie van een unicorn">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#8a2be2"/>
+      <stop offset="1" stop-color="#ff6fa9"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="100%" height="100%" fill="#fff8fb" rx="20"/>
+
+  <!-- body -->
+  <g transform="translate(60,120) scale(1)">
+    <ellipse cx="260" cy="140" rx="160" ry="80" fill="#ffffff" stroke="#f3e8ff" stroke-width="6"/>
+    <path d="M120 140 C 120 70, 340 70, 380 140" fill="#fff" stroke="#f6ecff" stroke-width="6"/>
+
+    <!-- head -->
+    <g transform="translate(360,80)">
+      <ellipse cx="0" cy="0" rx="46" ry="40" fill="#fff" stroke="#ffe8fb" stroke-width="4"/>
+      <circle cx="-10" cy="-4" r="4" fill="#2b1b3a"/>
+      <!-- horn -->
+      <path d="M-8 -36 L0 -84 L8 -36 Z" fill="url(#g1)"/>
+      <path d="M0 -84 L0 -36" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+      <!-- ear -->
+      <path d="M-28 -20 L-40 -36 L-18 -30 Z" fill="#fff" stroke="#ffe6fb"/>
+    </g>
+
+    <!-- mane -->
+    <g transform="translate(330,20)">
+      <path d="M0 0 C -40 -20, -80 10, -120 -4 C -160 -18, -140 40, -100 36 C -60 32, -40 10, 0 20 Z" fill="#ff6fa9"/>
+      <path d="M10 10 C -20 -6, -60 26, -100 8 C -140 -10, -120 54, -80 50 C -40 46, -20 30, 10 40 Z" fill="#8a2be2" opacity="0.9"/>
+      <path d="M20 30 C -10 6, -50 46, -90 30" stroke="#fff" stroke-width="4" fill="none" opacity="0.25"/>
+    </g>
+
+    <!-- tail -->
+    <g transform="translate(120,120)">
+      <path d="M0 0 C -30 -10, -60 20, -80 0 C -100 -20, -80 36, -60 28 C -40 20, -20 6, 0 20 Z" fill="#8a2be2"/>
+      <path d="M-6 6 C -36 -4, -66 26, -86 8" stroke="#ff6fa9" stroke-width="6" fill="none" opacity="0.9"/>
+    </g>
+
+    <!-- hooves -->
+    <rect x="160" y="180" width="18" height="12" rx="6" fill="#f3e6ff"/>
+    <rect x="220" y="180" width="18" height="12" rx="6" fill="#f3e6ff"/>
+  </g>
+
+  <!-- text -->
+  <text x="50%" y="360" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#2b1b3a">Louen wordt 7 — 27 november</text>
+</svg>

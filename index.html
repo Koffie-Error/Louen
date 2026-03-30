@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hoera! Louen wordt 7 — 27 november</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Vier Louen's 7e verjaardag op 27 november — feest, taart en confetti!">
+  </head>
+  <body>
+    <main class="page">
+      <div class="card">
+        <h1 class="title">Hoera! Louen wordt 7</h1>
+        <p class="subtitle">27 november — kom mee vieren!</p>
+
+        <div class="slingers top" aria-hidden="true">
+          <span class="flag f1"></span>
+          <span class="flag f2"></span>
+          <span class="flag f3"></span>
+          <span class="flag f4"></span>
+          <span class="flag f5"></span>
+          <span class="flag f6"></span>
+          <span class="flag f7"></span>
+          <span class="flag f8"></span>
+        </div>
+
+        <p class="lead">Louen nodigt je uit voor taart, spelletjes en veel confetti. Klik op de knop om het feest te starten!</p>
+
+        <div class="actions">
+          <button id="celebrate" class="btn">Vier mee 🎉</button>
+          <a class="btn ghost" href="#details">Meer info</a>
+        </div>
+
+        <section id="details" class="details">
+          <h2>Praktische info</h2>
+          <ul>
+            <li>Datum: 27 november</li>
+            <li>Tijd: 15:00</li>
+            <li>Leeftijd: 7 jaar</li>
+            <li>Locatie: <a href="https://www.google.com/maps/search/?api=1&query=Strandcaf%C3%A9+Buiten+Amsterdam" target="_blank" rel="noopener">Strandcafé Buiten, Amsterdam</a></li>
+          </ul>
+
+          <div class="slingers" aria-hidden="true">
+            <span class="flag f1"></span>
+            <span class="flag f2"></span>
+            <span class="flag f3"></span>
+            <span class="flag f4"></span>
+            <span class="flag f5"></span>
+            <span class="flag f6"></span>
+            <span class="flag f7"></span>
+            <span class="flag f8"></span>
+          </div>
+
+        </section>
+
+          <h3>RSVP</h3>
+          <form id="rsvp" class="rsvp-form">
+            <label for="name">Naam</label>
+            <input id="name" name="name" type="text" placeholder="Jouw naam" required>
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="je@mail.com" required>
+
+            <label for="attending">Kom je?</label>
+            <select id="attending" name="attending">
+              <option value="yes">Ja</option>
+              <option value="no">Nee</option>
+              <option value="maybe">Misschien</option>
+            </select>
+
+            <label for="guests">Aantal extra kinderen/gezinsleden</label>
+            <input id="guests" name="guests" type="text" placeholder="0">
+
+            <label for="note">Bericht (optioneel)</label>
+            <textarea id="note" name="note" rows="3" placeholder="Bijv. dieetwensen"></textarea>
+
+            <div class="rsvp-actions">
+              <button type="submit" class="btn">Verstuur RSVP</button>
+              <a class="btn ghost" href="invitation.html" target="_blank">Print uitnodiging</a>
+            </div>
+            <p id="rsvp-status" class="note" aria-live="polite"></p>
+          </form>
+      
+          <section id="wishlist" class="details">
+            <h3>Verlanglijstje</h3>
+            <p>Vink iets aan als je het cadeau wilt meenemen. Vul je e-mail in als bevestiging.</p>
+            <ul id="wish-list">
+              <li data-id="w1"><label><input type="checkbox"> Eenhoorn-knuffel</label></li>
+              <li data-id="w2"><label><input type="checkbox"> Regenboog-taart</label></li>
+              <li data-id="w3"><label><input type="checkbox"> Spelletjes-set</label></li>
+              <li data-id="w4"><label><input type="checkbox"> Creatieve knutselset</label></li>
+            </ul>
+
+            <div class="add-wish">
+              <input id="new-wish" placeholder="Voeg eigen wens toe" />
+              <button id="add-wish" class="btn ghost">Voeg toe</button>
+            </div>
+            <p class="note">E-mails worden alleen lokaal opgeslagen in je browser (localStorage).</p>
+          </section>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+      const btn = document.getElementById('celebrate')
+      function burst() {
+        confetti({
+          particleCount: 120,
+          spread: 70,
+          origin: { y: 0.6 }
+        })
+      }
+
+      btn.addEventListener('click', () => {
+        burst()
+        setTimeout(burst, 300)
+        setTimeout(burst, 700)
+      })
+
+      window.addEventListener('load', () => setTimeout(burst, 600))
+
+        // RSVP handling: save to localStorage and open mail client
+        const form = document.getElementById('rsvp')
+        const status = document.getElementById('rsvp-status')
+
+        form.addEventListener('submit', (e) => {
+          e.preventDefault()
+          const data = {
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            attending: form.attending.value,
+            guests: form.guests.value.trim(),
+            note: form.note.value.trim(),
+            date: new Date().toISOString()
+          }
+
+          // save locally
+          const key = 'louen_rsvps'
+          const cur = JSON.parse(localStorage.getItem(key) || '[]')
+          cur.push(data)
+          localStorage.setItem(key, JSON.stringify(cur))
+
+          // build mailto fallback to Els
+          const subject = encodeURIComponent(`RSVP Louen - ${data.name}`)
+          const body = encodeURIComponent(`Naam: ${data.name}\nEmail: ${data.email}\nKom je: ${data.attending}\nExtra gasten: ${data.guests}\nBericht: ${data.note}\n\nDatum: 27 november, 15:00\nLocatie: Strandcafé Buiten, Amsterdam - https://www.google.com/maps/search/?api=1&query=Strandcaf%C3%A9+Buiten+Amsterdam`)
+          window.location.href = `mailto:els@a-lab.nl?subject=${subject}&body=${body}`
+
+          status.textContent = 'Dankje! Je RSVP is opgeslagen en de mail-app is geopend.'
+          form.reset()
+        })
+
+        // Wishlist logic: capture email when item is checked
+        const wishList = document.getElementById('wish-list')
+        const STORAGE_WISH = 'louen_wishes'
+
+        function loadWishes(){
+          try{ return JSON.parse(localStorage.getItem(STORAGE_WISH) || '{}') }catch(e){ return {} }
+        }
+        function saveWishes(obj){ localStorage.setItem(STORAGE_WISH, JSON.stringify(obj)) }
+
+        // initialize checkboxes
+        function initWishlist(){
+          const saved = loadWishes()
+          Array.from(wishList.querySelectorAll('li')).forEach(li => {
+            const id = li.getAttribute('data-id')
+            const cb = li.querySelector('input[type=checkbox]')
+            cb.checked = saved[id] && saved[id].email ? true : false
+            if(cb.checked) attachEmailField(li, saved[id].email)
+            cb.addEventListener('change', (e)=> onWishToggle(e, li))
+          })
+        }
+
+        function onWishToggle(e, li){
+          const id = li.getAttribute('data-id')
+          if(e.target.checked){
+            // show inline email input
+            attachEmailField(li, '')
+          } else {
+            // remove email and save
+            removeEmailField(li)
+            const obj = loadWishes()
+            delete obj[id]
+            saveWishes(obj)
+          }
+        }
+
+        function attachEmailField(li, value){
+          // don't attach twice
+          if(li.querySelector('.email-inline')) return
+          const input = document.createElement('input')
+          input.type = 'email'
+          input.placeholder = 'jouw email'
+          input.className = 'email-inline'
+          input.value = value || ''
+          li.appendChild(input)
+          input.focus()
+
+          input.addEventListener('blur', ()=> saveEmail(li, input))
+          input.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter'){ ev.preventDefault(); input.blur() } })
+        }
+
+        function removeEmailField(li){
+          const f = li.querySelector('.email-inline')
+          if(f) f.remove()
+        }
+
+        function saveEmail(li, input){
+          const email = input.value.trim()
+          const id = li.getAttribute('data-id')
+          const cb = li.querySelector('input[type=checkbox]')
+          if(!email){
+            // if no email provided, uncheck
+            cb.checked = false
+            input.remove()
+            return
+          }
+          const obj = loadWishes()
+          obj[id] = { email, item: li.textContent.trim() }
+          saveWishes(obj)
+          // indicate saved
+          input.disabled = true
+
+          // send confirmation mail to the person and cc Els
+          try{
+            const itemText = li.textContent.trim()
+            const subjectU = encodeURIComponent(`Bevestiging: Ik neem '${itemText}' mee voor Louen`)
+            const bodyU = encodeURIComponent(`Hoi,\n\nBedankt dat je '${itemText}' meeneemt voor Louen\'s verjaardag op 27 november.\n\nLocatie: Strandcafé Buiten, Amsterdam\n\nGroeten,\nEls`)
+            const mailto = `mailto:${encodeURIComponent(email)}?subject=${subjectU}&body=${bodyU}&cc=els@a-lab.nl`
+            // open mail client to let user confirm/send
+            window.location.href = mailto
+          }catch(e){ /* ignore */ }
+        }
+
+        // add new wish
+        document.getElementById('add-wish').addEventListener('click', ()=>{
+          const v = document.getElementById('new-wish').value.trim()
+          if(!v) return
+          const li = document.createElement('li')
+          const id = 'w' + Date.now()
+          li.setAttribute('data-id', id)
+          li.innerHTML = `<label><input type="checkbox"> ${escapeHtml(v)}</label>`
+          wishList.appendChild(li)
+          document.getElementById('new-wish').value = ''
+          const cb = li.querySelector('input[type=checkbox]')
+          cb.addEventListener('change',(e)=> onWishToggle(e,li))
+        })
+
+        function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+        initWishlist()
+    </script>
+  </body>
+</html>

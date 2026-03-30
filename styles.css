@@ -1,0 +1,163 @@
+:root{
+  --bg-1: #fdeef9; /* soft pink */
+  --bg-2: #f4fff6; /* soft mint */
+  --bg-3: #eef6ff; /* soft blue */
+  --bg-4: #fbf6ff;
+  --card:#fffefc;
+  --accent:#6b1fa6; /* deep purple */
+  --accent-2:#18b48a; /* teal/green */
+  --muted:#5b5b64;
+  --star:#fff7b2;
+}
+/* extra playful colors */
+:root{
+  --neon-pink: #ff3cac;
+  --neon-orange: #ff9a3c;
+  --neon-yellow: #ffd93d;
+  --neon-green: #3cffb0;
+  --neon-cyan: #3ce5ff;
+  --neon-blue: #6b7bff;
+  --glitter: rgba(255,255,255,0.35);
+  --rainbow-1: #ff3cac;
+  --rainbow-2: #ff9a3c;
+  --rainbow-3: #ffd93d;
+  --rainbow-4: #3cffb0;
+  --rainbow-5: #3ce5ff;
+  --rainbow-6: #6b7bff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#061122;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;overflow-x:hidden}
+
+/* Vibrant, playful layered background with rainbow bands & glitter */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:-3;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.06), transparent 10%),
+    linear-gradient(120deg, var(--rainbow-1), var(--rainbow-2) 16%, var(--rainbow-3) 32%, var(--rainbow-4) 48%, var(--rainbow-5) 68%, var(--rainbow-6) 84%);
+  background-size: 200% 200%;
+  mix-blend-mode: screen;
+  animation: bgShift 18s linear infinite;
+}
+
+/* glitter overlay */
+body::after{
+  content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image: radial-gradient(circle at 5% 10%, rgba(255,255,255,0.9) 0px, transparent 6px), radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85) 0px, transparent 5px), radial-gradient(circle at 70% 20%, rgba(255,255,255,0.8) 0px, transparent 7px);
+  background-size: 180px 180px,140px 140px,220px 220px;opacity:0.45;filter:blur(1px);
+  animation: sparkle 6s linear infinite;
+}
+
+@keyframes sparkle{0%{opacity:0.35}50%{opacity:0.55}100%{opacity:0.35}}
+
+/* subtle twinkling stars overlay element (added in HTML) */
+.stars{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.9;
+  background-image:
+    radial-gradient(circle at 10% 10%, var(--star) 0px, transparent 6px),
+    radial-gradient(circle at 30% 30%, var(--star) 0px, transparent 5px),
+    radial-gradient(circle at 70% 20%, var(--star) 0px, transparent 7px),
+    radial-gradient(circle at 85% 60%, var(--star) 0px, transparent 6px);
+  background-size: 200px 200px, 160px 160px, 220px 220px, 180px 180px;
+}
+
+/* magical park vista overlay */
+body::after{
+  content:'';
+  position:fixed;
+  left:0;right:0;bottom:0;top:0;
+  z-index:-1;
+  background-image: url('assets/park-scene.svg');
+  background-repeat:no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  opacity:0.18;
+  pointer-events:none;
+  transform-origin:center bottom;
+  will-change: transform, opacity;
+  filter: saturate(1.05) contrast(1.02);
+  animation: vistaFloat 12s ease-in-out infinite;
+}
+
+@keyframes vistaFloat{
+  0%{transform: translateY(0px) scale(1)}
+  50%{transform: translateY(-6px) scale(1.01)}
+  100%{transform: translateY(0px) scale(1)}
+}
+
+@keyframes bgShift{
+  0%{background-position:0% 0%}
+  50%{background-position:100% 100%}
+  100%{background-position:0% 0%}
+}
+.page{width:100%;max-width:900px}
+.card{position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,250,255,0.95));padding:2.2rem;border-radius:20px;box-shadow:0 22px 60px rgba(20,18,60,0.12);text-align:center;border:1px solid rgba(255,215,64,0.12);backdrop-filter: blur(6px) saturate(1.05);overflow:hidden;display:grid;grid-template-columns:1fr;gap:1rem}
+
+/* playful colored blocks inside the card */
+.card .block-row{display:flex;gap:0.6rem;justify-content:center}
+.card .block{flex:1;padding:.6rem;border-radius:10px;color:#081226;font-weight:700;box-shadow:0 6px 18px rgba(11,12,30,0.06)}
+.block.b1{background:linear-gradient(90deg,var(--neon-pink),var(--neon-orange));color:white}
+.block.b2{background:linear-gradient(90deg,var(--neon-yellow),var(--neon-green));color:#072}
+.block.b3{background:linear-gradient(90deg,var(--neon-cyan),var(--neon-blue));color:white}
+
+/* small rainbow corner accent */
+.card::before{content:'';position:absolute;right:14px;top:14px;width:120px;height:120px;border-radius:18px;background:linear-gradient(180deg,var(--rainbow-1),var(--rainbow-2),var(--rainbow-3),var(--rainbow-4));opacity:0.12;transform:rotate(18deg)}
+.title{font-size:2.4rem;margin:0 0 .2rem;color:var(--accent)}
+.subtitle{margin:0 0 1rem;color:var(--muted);font-weight:600}
+.lead{color:#24303f;margin:1rem 0 1.25rem}
+.hero-photo{width:180px;height:180px;border-radius:12px;object-fit:cover;display:block;margin:0 auto 1rem;box-shadow:0 8px 20px rgba(138,43,226,0.12)}
+.actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{background:linear-gradient(90deg,var(--neon-pink),var(--neon-blue));border:0;padding:.9rem 1.4rem;border-radius:999px;color:white;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(107,31,166,0.16);text-transform:uppercase;letter-spacing:0.6px}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:linear-gradient(90deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02));border:2px solid rgba(255,255,255,0.12);padding:.6rem 1rem;color:#061122}
+
+/* neon outline for focus */
+.btn:focus{outline:4px solid rgba(255,200,80,0.12);outline-offset:3px}
+.details{text-align:left;margin-top:1.2rem}
+.details h2{margin:.6rem 0}
+
+/* RSVP form */
+.rsvp-form{margin-top:1rem;display:grid;gap:.6rem;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,250,255,0.7));padding:1rem;border-radius:14px;border:1px solid rgba(6,17,34,0.04);box-shadow:0 10px 30px rgba(107,31,166,0.06)}
+.rsvp-form input[type="text"],.rsvp-form input[type="email"],.rsvp-form select,.rsvp-form textarea{padding:.8rem;border-radius:10px;border:0;background:linear-gradient(90deg,rgba(255,255,255,0.6),rgba(255,255,255,0.2));box-shadow:0 6px 18px rgba(107,31,166,0.06) inset;color:#061122}
+.rsvp-form label{display:block;text-align:left}
+
+/* colorful form separators */
+.rsvp-form .rsvp-actions{display:flex;gap:.6rem;align-items:center;justify-content:space-between}
+
+/* wishlist & small elements get playful accents */
+.wishlist-note{color:var(--neon-pink)}
+.balloons .balloon{filter:drop-shadow(0 6px 18px rgba(107,31,166,0.12))}
+.rsvp-form label{font-weight:600}
+.rsvp-actions{display:flex;gap:.6rem;align-items:center}
+.note{font-size:0.9rem;color:var(--muted)}
+
+/* invitation print styles (for invitation.html) */
+@media print{
+  body{background:white}
+  .no-print{display:none}
+}
+
+/* Wishlist styles */
+.wishlist-note{font-size:0.95rem;color:var(--muted);margin-top:0.5rem}
+#wish-list{list-style:none;padding:0;margin:0.6rem 0 0}
+#wish-list li{display:flex;align-items:center;gap:.6rem;padding:.45rem .4rem;border-radius:8px}
+#wish-list li label{cursor:pointer;flex:1}
+#wish-list li input[type="checkbox"]{width:20px;height:20px}
+#wish-list li .email-capture{margin-left:8px}
+.add-wish{display:flex;gap:.5rem;margin-top:.6rem}
+.add-wish input{flex:1;padding:.5rem;border-radius:8px;border:1px solid rgba(6,17,34,0.06)}
+
+.email-inline{margin-left:8px;padding:.35rem .5rem;border-radius:8px;border:1px solid rgba(6,17,34,0.08)}
+.email-inline[disabled]{opacity:0.7}
+
+.balloons{display:flex;gap:.6rem;justify-content:center;margin:.8rem 0}
+.balloon{width:42px;height:56px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;position:relative}
+.balloon::after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:-10px;width:2px;height:12px;background:rgba(0,0,0,0.06)}
+.b1{background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(255,111,163,1))}
+.b2{background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(255,209,102,1))}
+.b3{background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(98,199,255,1))}
+
+@media (max-width:500px){
+  .title{font-size:1.8rem}
+  .card{padding:1.4rem}
+}

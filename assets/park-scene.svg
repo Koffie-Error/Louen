@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff8ff" />
+      <stop offset="100%" stop-color="#eef8ff" />
+    </linearGradient>
+    <linearGradient id="sun" x1="0" x2="1">
+      <stop offset="0%" stop-color="#fff4b2" />
+      <stop offset="100%" stop-color="#ffd6e8" />
+    </linearGradient>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#sky)" />
+
+  <!-- distant hills -->
+  <path d="M0 300 C150 230, 300 260, 480 300 C660 340, 820 300, 1200 320 L1200 400 L0 400 Z" fill="#f6ecff" opacity="0.9"/>
+
+  <!-- sun -->
+  <circle cx="1000" cy="70" r="50" fill="url(#sun)" opacity="0.95" />
+
+  <!-- simple castle silhouette (generic, stylized) -->
+  <g transform="translate(240,120) scale(0.9)">
+    <rect x="0" y="80" width="140" height="120" rx="8" fill="#fff" opacity="0.95"/>
+    <rect x="-18" y="40" width="40" height="60" rx="6" fill="#fff" opacity="0.95"/>
+    <rect x="140" y="40" width="40" height="60" rx="6" fill="#fff" opacity="0.95"/>
+    <polygon points="0,80 20,40 40,80" fill="#fff" opacity="0.95"/>
+    <polygon points="40,80 60,40 80,80" fill="#fff" opacity="0.95"/>
+    <polygon points="80,80 100,40 120,80" fill="#fff" opacity="0.95"/>
+    <rect x="40" y="120" width="60" height="80" rx="6" fill="#fff" opacity="0.95"/>
+  </g>
+
+  <!-- ferris wheel -->
+  <g transform="translate(720,170) scale(0.9)" opacity="0.95">
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#fff" stroke-width="6"/>
+    <circle cx="0" cy="0" r="6" fill="#fff"/>
+    <g stroke="#fff" stroke-width="4">
+      <line x1="0" y1="-60" x2="0" y2="60" />
+      <line x1="-60" y1="0" x2="60" y2="0" />
+      <line x1="-42" y1="-42" x2="42" y2="42" />
+      <line x1="-42" y1="42" x2="42" y2="-42" />
+    </g>
+  </g>
+
+  <!-- rollercoaster curve -->
+  <path d="M20 260 C120 200, 260 280, 360 240 C460 200, 560 300, 760 250 C860 230, 980 300, 1180 260" fill="none" stroke="#fff" stroke-width="6" opacity="0.9" stroke-linecap="round"/>
+
+  <!-- foreground stylized trees -->
+  <g fill="#fff" opacity="0.95">
+    <ellipse cx="80" cy="320" rx="40" ry="18" />
+    <ellipse cx="160" cy="330" rx="30" ry="14" />
+    <ellipse cx="330" cy="340" rx="46" ry="20" />
+    <ellipse cx="960" cy="340" rx="36" ry="16" />
+  </g>
+
+</svg>
